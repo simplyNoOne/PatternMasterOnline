@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Pattern Master</title>
+{% endblock %}
+
+{% block body %}
+<div class = "content">
+    <h2 style="text-align: center;">Best Scores</h2>
+    {% if scores|length < 1 %}
+        <h3 >No games played yet</h3>
+    {% else %}
+        <table  style="margin-bottom: 20px;">
+            <tr>
+                <th class="scoreboard_title">Place</th>
+                <th class="scoreboard_title">Date</th>
+                <th class="scoreboard_title">Score</th>
+            </tr>
+            {% for score in scores %}
+                <tr>
+                    <td class="scoreboard_data" style="text-align: center;"> {{ loop.index }}</td>
+                    <td class="scoreboard_data" style="text-align: center;"> {{ score.date_created.date() }}</td>
+                    <td class="scoreboard_data" style="text-align: center;"> {{ score.score }} </td>
+                </tr>
+            {% endfor %}
+        </table >
+    {% endif %}
+    <a id="play_button" href="/game/">Play Game!</a>
+</div>
+{% endblock%}
